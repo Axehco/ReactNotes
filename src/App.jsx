@@ -1,83 +1,28 @@
-import React, { Component } from 'react';
-import Header from './components/Header';
-import List from './components/List';
-import Footer from './components/Footer'
-import './App.css'
+import React, { Component } from 'react'
+import axios from 'axios'
 
 export default class App extends Component {
 
-  state = {
-    todos: [
-      { id: '001', name: '吃饭', done: true },
-      { id: '002', name: '睡觉', done: true },
-      { id: '003', name: '打代码', done: false },
-      { id: '004', name: '逛街', done: true },
-    ]
+  getStudentData = () => {
+    axios.get('http://localhost:3000/api1/student').then(
+      response => {console.log('成功了', response.data)},
+      error => {console.log('失败了', error)}
+    )
   }
 
-  addtodo = (todoObj) => {
-    const { todos } = this.state
-    const newTodos = [todoObj, ...todos]
-    this.setState({ todos: newTodos })
+  getCarData = () => {
+    axios.get('http://localhost:3000/api2/cars').then(
+      response => {console.log('成功了', response.data)},
+      error => {console.log('失败了', error)}
+    )
   }
-
-  // 祖孙关系 要传给Item
-  updateTodo = (id, done) => {
-    const { todos } = this.state
-    const newTodos = todos.map((todoObj) => {
-      if (todoObj.id === id) return { ...todoObj, done }
-      else return todoObj
-    })
-    this.setState({ todos: newTodos })
-  }
-
-  //deleteTodo用于删除一个todo对象
-  deleteTodo = (id) => {
-    //获取原来的todos
-    const { todos } = this.state
-    //删除指定id的todo对象
-    const newTodos = todos.filter((todoObj) => {
-      return todoObj.id !== id
-    })
-    //更新状态
-    this.setState({ todos: newTodos })
-  }
-
-  //checkAllTodo用于全选
-  checkAllTodo = (done) => {
-    //获取原来的todos
-    const { todos } = this.state
-    //加工数据
-    const newTodos = todos.map((todoObj) => {
-      return { ...todoObj, done: done }
-    })
-    //更新状态
-    this.setState({ todos: newTodos })
-  }
-
-  //clearAllDone用于清除所有已完成的
-	clearAllDone = ()=>{
-		//获取原来的todos
-		const {todos} = this.state
-		//过滤数据
-		const newTodos = todos.filter((todoObj)=>{
-			return !todoObj.done
-		})
-		//更新状态
-		this.setState({todos:newTodos})
-	}
-
+    
   render() {
-    const { todos } = this.state
-
     return (
-      <div className="todo-container">
-        <div className="todo-wrap">
-          <Header addtodo={this.addtodo} />
-          <List todos={todos} updateTodo={this.updateTodo} deleteTodo={this.deleteTodo} />
-          <Footer todos={todos} checkAllTodo={this.checkAllTodo} clearAllDone={this.clearAllDone} />
-        </div>
+      <div>
+        <button onClick={this.getStudentData}>获取学生信息</button>
+        <button onClick={this.getCarData}>获取汽车信息</button>
       </div>
-    );
+    )
   }
 }
