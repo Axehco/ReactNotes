@@ -28,7 +28,7 @@ class Message extends Component {
                   {/* <Link to={`/home/message/detail/?id=${megObj.id}&title=${megObj.title}`}>{megObj.title}</Link> */}
 
                   {/* 向路由组件传递state参数 */}
-                  <Link to={{pathname:'/home/message/detail', state: {id:megObj.id, title:megObj.title}}}>{megObj.title}</Link>
+                  <Link replace={true} to={{pathname:'/home/message/detail', state: {id:megObj.id, title:megObj.title}}}>{megObj.title}</Link>
                 </li>
               )
             })
