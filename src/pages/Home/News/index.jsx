@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 
 class News extends Component {
+
+  /* componentDidMount() {
+    setInterval(() => {
+      this.props.history.push('/home/message')
+    }, 3000)
+  } */
+
   render() {
     return (
       <ul>
