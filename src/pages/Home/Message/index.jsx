@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link, Route} from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import Detail from './Detail'
 
 class Message extends Component {
@@ -11,6 +11,28 @@ class Message extends Component {
     ]
   }
 
+  replaceShow = (id, title) => {
+    //replace跳转+携带params参数
+    this.props.history.replace(`/home/message/detail/${id}/${title}`)
+
+    //replace跳转+携带search参数
+    // this.props.history.replace(`/home/message/detail?id=${id}&title=${title}`)
+
+    //replace跳转+携带state参数
+    // this.props.history.replace(`/home/message/detail`,{id:id,title:tittle})
+  }
+
+  pushShow = (id,title)=>{
+		//push跳转+携带params参数
+		this.props.history.push(`/home/message/detail/${id}/${title}`)
+
+		//push跳转+携带search参数
+		// this.props.history.push(`/home/message/detail?id=${id}&title=${title}`)
+
+		//push跳转+携带state参数
+		// this.props.history.push(`/home/message/detail`,{id,title})
+	}
+
   render() {
     const { messageArr } = this.state
     return (
@@ -21,14 +43,16 @@ class Message extends Component {
               return (
                 <li key={megObj.id}>
                   {/* 向路由组件传递params参数 */}
-                  {/* <Link to={`/home/message/detail/${megObj.id}/${megObj.title}`}>{megObj.title}</Link> */}
-
+                  <Link to={`/home/message/detail/${megObj.id}/${megObj.title}`}>{megObj.title}</Link>
 
                   {/* 向路由组件传递search参数 */}
                   {/* <Link to={`/home/message/detail/?id=${megObj.id}&title=${megObj.title}`}>{megObj.title}</Link> */}
 
                   {/* 向路由组件传递state参数 */}
-                  <Link replace={true} to={{pathname:'/home/message/detail', state: {id:megObj.id, title:megObj.title}}}>{megObj.title}</Link>
+                  {/* <Link replace={true} to={{pathname:'/home/message/detail', state: {id:megObj.id, title:megObj.title}}}>{megObj.title}</Link> */}
+
+                  &nbsp;<button onClick={() => {this.pushShow(megObj.id, megObj.title)}}>push查看</button>
+                  &nbsp;<button onClick={() => { this.replaceShow(megObj.id, megObj.title) }}>replace查看</button>
                 </li>
               )
             })
@@ -36,13 +60,13 @@ class Message extends Component {
         </ul>
         <hr />
         {/* 声明接收params参数 */}
-        {/* <Route path="/home/message/detail/:id/:title" component={Detail}/> */}
+        <Route path="/home/message/detail/:id/:title" component={Detail} />
 
         {/* search参数无需声明接收，正常注册路由即可 */}
         {/* <Route path="/home/message/detail" component={Detail}/> */}
 
         {/* state参数无需声明接收，正常注册路由即可 */}
-        <Route path="/home/message/detail" component={Detail}/>
+        {/* <Route path="/home/message/detail" component={Detail} /> */}
       </div>
     );
   }
