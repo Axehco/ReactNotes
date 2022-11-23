@@ -1,43 +1,25 @@
 import React, { Component } from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
-import Header from './components/Header'
-import MyNavLink from './components/MyNavLink'
+import { Button,DatePicker } from 'antd';
+import {WechatOutlined,WeiboOutlined,SearchOutlined} from '@ant-design/icons'
+const { RangePicker } = DatePicker;
 
-class App extends Component {
+export default class App extends Component {
 	render() {
 		return (
 			<div>
-				<div className="row">
-					<div className="col-xs-offset-2 col-xs-8">
-						<div className="page-header">
-							<Header />
-						</div>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-xs-2 col-xs-offset-2">
-						<div className="list-group">
-							<MyNavLink to="/about">About</MyNavLink>
-							<MyNavLink to="/home">Home</MyNavLink>
-						</div>
-					</div>
-					<div className="col-xs-6">
-						<div className="panel">
-							<div className="panel-body">
-								<Switch>
-									<Route path="/about" component={About} />
-									<Route path="/home" component={Home} />
-									<Redirect to="/about" />
-								</Switch>
-							</div>
-						</div>
-					</div>
-				</div>
+				App....
+				<button>点我</button>
+				<Button type="primary">按钮1</Button>
+				<Button >按钮2</Button>
+				<Button type="link">按钮3</Button>
+				<Button type="primary" icon={<SearchOutlined />}>
+					Search
+				</Button>
+				<WechatOutlined />
+				<WeiboOutlined />
+				<DatePicker/>
+				<RangePicker/>
 			</div>
-		);
+		)
 	}
 }
-
-export default App;
