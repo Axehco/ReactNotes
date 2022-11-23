@@ -20,15 +20,15 @@ class App extends Component {
 					<div className="col-xs-2 col-xs-offset-2">
 						<div className="list-group">
 							<MyNavLink to="/about">About</MyNavLink>
-							<MyNavLink to="/home">Home</MyNavLink>
+							<MyNavLink to="/home/a/b">Home</MyNavLink>
 						</div>
 					</div>
 					<div className="col-xs-6">
 						<div className="panel">
 							<div className="panel-body">
 								<Switch>
-									<Route path="/about" component={About} />
-									<Route path="/home" component={Home} />
+									<Route exact={true} path="/about" component={About} />
+									<Route exact={true} path="/home" component={Home} />
 								</Switch>
 							</div>
 						</div>
