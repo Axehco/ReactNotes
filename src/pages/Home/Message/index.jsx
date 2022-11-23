@@ -25,7 +25,10 @@ class Message extends Component {
 
 
                   {/* 向路由组件传递search参数 */}
-                  <Link to={`/home/message/detail/?id=${megObj.id}&title=${megObj.title}`}>{megObj.title}</Link>
+                  {/* <Link to={`/home/message/detail/?id=${megObj.id}&title=${megObj.title}`}>{megObj.title}</Link> */}
+
+                  {/* 向路由组件传递state参数 */}
+                  <Link to={{pathname:'/home/message/detail', state: {id:megObj.id, title:megObj.title}}}>{megObj.title}</Link>
                 </li>
               )
             })
@@ -36,6 +39,9 @@ class Message extends Component {
         {/* <Route path="/home/message/detail/:id/:title" component={Detail}/> */}
 
         {/* search参数无需声明接收，正常注册路由即可 */}
+        {/* <Route path="/home/message/detail" component={Detail}/> */}
+
+        {/* state参数无需声明接收，正常注册路由即可 */}
         <Route path="/home/message/detail" component={Detail}/>
       </div>
     );
